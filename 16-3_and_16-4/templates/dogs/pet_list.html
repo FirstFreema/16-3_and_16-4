@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pets List</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Pets</h1>
+        <a href="{% url 'create_pet' %}" class="btn btn-primary">Add New Pet</a>
+        <ul class="list-group mt-4">
+            {% for pet in pets %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <img src="{% static 'dummydog.jpg' %}" alt="Pet Image" width="50" height="50" class="me-3">
+                        <strong>{{ pet.name }}</strong> - {{ pet.breed }}
+                    </div>
+                    <div>
+                        <a href="{% url 'update_pet' pet.pk %}" class="btn btn-sm btn-warning">Edit</a>
+                        <a href="{% url 'delete_pet' pet.pk %}" class="btn btn-sm btn-danger">Delete</a>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
